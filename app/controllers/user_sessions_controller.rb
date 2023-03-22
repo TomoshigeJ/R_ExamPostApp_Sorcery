@@ -1,6 +1,5 @@
 class UserSessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     @user = login(params[:email], params[:password])
@@ -15,6 +14,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to login_path, flash: {success: 'Logout successful.'}
+    redirect_to login_path, flash: { success: 'Logout successful.' }
   end
 end

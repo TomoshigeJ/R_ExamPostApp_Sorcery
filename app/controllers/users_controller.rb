@@ -11,8 +11,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to login_path, flash: {success: 'User was successfully created.' }
     else
+      flash.now[:danger] = '登録失敗'
       render :new
     end
   end
@@ -25,6 +26,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation)
+      params.require(:user).permit(:last_name, :first_name, :email, :password, :password_confirmation)
     end
 end
